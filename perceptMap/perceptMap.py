@@ -106,7 +106,7 @@ class UserResponse(BoxLayout):
         for widg in self.ids.keys():            # this is slightly uncouth
             if 'Box' in widg:
                 self.ids[widg].set_labels_and_radio(False)
-        for iKey in ['naturalSlider', 'painSlider', 'phantomSlider', 'motorSlider','tempSlider']:
+        for iKey in ['naturalSlider', 'painSlider', 'phantomSlider', 'motorSlider','tempSlider','maintactileSlider']:
             self.ids[iKey].value = 5
             self.ids[iKey].cursor_image = '../ImageBank/sliderVal.png'
         for i in self.ids['depthbox1'].children:

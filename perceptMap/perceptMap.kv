@@ -54,17 +54,18 @@
                 padding: 25, 10
                 orientation: 'vertical'
                 spacing: 30
+
                 BoxLayout
                     orientation: 'vertical'
                     Label:
-                        text: 'Насколько естественно испытанное ощущение?'
+                        text: 'Интенсивность тактильного ощущения?'
                         size_hint_y: 0.15
                         text_size: self.size
                         halign: "left"
                         font_size: 16
                     SliderResponse:
-                        id: naturalSlider
-                        id2:'naturalSlider'
+                        id: maintactileSlider
+                        id2:'maintactileSlider'
                         size_hint_y: 0.25
                         min: 0
                         max: 10
@@ -76,13 +77,48 @@
                         size_hint_y: 0.2
                         orientation: 'horizontal'
                         Label:
-                            text: ('Совершенно \nНеестественно')
+                            text: ('0')
                             text_size: self.size
                             valign: "top"
                             halign:"left"
                             font_size: 12
                         Label:
-                            text: 'Совершенно \nЕстественно'
+                            text: '10'
+                            text_size: self.size
+                            valign: "top"
+                            halign:"right"
+                            font_size: 12
+
+
+                BoxLayout
+                    orientation: 'vertical'
+                    Label:
+                        text: 'Есстественно ли было тактильное ощущение?'
+                        size_hint_y: 0.15
+                        text_size: self.size
+                        halign: "left"
+                        font_size: 16
+                    SliderResponse:
+                        id: naturalSlider
+                        id2:'naturalSlider'
+                        size_hint_y: 0.25
+                        min: -5
+                        max: 5
+                        step: 0.1
+                        value: 0
+                        orientation: 'horizontal'
+
+                    BoxLayout:
+                        size_hint_y: 0.2
+                        orientation: 'horizontal'
+                        Label:
+                            text: ('Неестественно')
+                            text_size: self.size
+                            valign: "top"
+                            halign:"left"
+                            font_size: 12
+                        Label:
+                            text: 'Естественно'
                             text_size: self.size
                             valign: "top"
                             halign:"right"
@@ -125,7 +161,7 @@
                 BoxLayout:
                     orientation: 'vertical'
                     Label:
-                        text: 'Насколько глубоко было испытано ощущение?'
+                        text: 'Глубина испытанного ощущение?'
                         size_hint_y: 0.50
                         text_size: self.size
                         halign: "left"
@@ -208,22 +244,22 @@
                         id2: 'tempSlider'
                         size_hint_y: 0.3
                         min: -5
-                        max: 5
+                        max: +5
                         step: 0.1
-                        value: 5
+                        value: 0
                         orientation: 'horizontal'
                     BoxLayout:
                         size_hint: 0.95,  0.3
                         pos_hint:{'x':0.03}
                         orientation: 'horizontal'
                         Label:
-                            text: '-5 \n(Холодно)'
+                            text: 'Холодно'
                             text_size: self.size
                             valign: "top"
                             halign:"left"
                             font_size: 14
                         Label:
-                            text: '5 \n(Горячо)'
+                            text: 'Горячо'
                             text_size: self.size
                             valign: "top"
                             halign:"right"
@@ -241,23 +277,23 @@
                         id: phantomSlider
                         id2: 'phantomSlider'
                         size_hint_y: 0.3
-                        min: 0
-                        max: 10
+                        min: -5
+                        max: +5
                         step: 0.1
-                        value: 5
+                        value: 0
                         orientation: 'horizontal'
                     BoxLayout:
                         size_hint: 0.95,  0.3
                         pos_hint:{'x':0.03}
                         orientation: 'horizontal'
                         Label:
-                            text: '0% \nОтсутствовала'
+                            text: 'Отсутствовала'
                             text_size: self.size
                             valign: "top"
                             halign:"left"
                             font_size: 14
                         Label:
-                            text: '100% \nКак обычно'
+                            text: 'Заметно усилилась'
                             text_size: self.size
                             valign: "top"
                             halign:"right"
@@ -755,11 +791,11 @@
 
 
 
-        SensationButton:
-            id2: 'add'
-            text: 'Add Sensation'
-            pos_hint: {'right': 0.95, 'y':0}
-            size_hint: 0.15,0.04
+        #SensationButton:
+        #    id2: 'add'
+        #    text: 'Add Sensation'
+        #    pos_hint: {'right': 0.95, 'y':0}
+        #    size_hint: 0.15,0.04
 
         SensationButton:
             id2: 'clear'
