@@ -9,7 +9,7 @@
 
 <LabelCheckBox@LabelCheckResponse>:
     check_pos: "left"
-    font_size: 20
+    font_size: '25sp'
     yshift: 25
     xshift: 0
     canvas:
@@ -97,7 +97,7 @@
                         size_hint_y: 0.15
                         text_size: self.size
                         halign: "left"
-                        font_size: 16
+                        font_size: '14sp'
                     SliderResponse:
                         id: naturalSlider
                         id2:'naturalSlider'
@@ -116,13 +116,13 @@
                             text_size: self.size
                             valign: "top"
                             halign:"left"
-                            font_size: 20
+                            font_size: '14sp'
                         Label:
                             text: 'Естественно'
                             text_size: self.size
                             valign: "top"
                             halign:"right"
-                            font_size: 20
+                            font_size: '14sp'
 
                 BoxLayout
                     orientation: 'vertical'
@@ -131,7 +131,7 @@
                         size_hint_y: 0.15
                         text_size: self.size
                         halign: "left"
-                        font_size: 20
+                        font_size: '14sp'
                     SliderResponse:
                         id: motorSlider
                         id2:'motorSlider'
@@ -149,13 +149,13 @@
                             text_size: self.size
                             valign: "top"
                             halign:"left"
-                            font_size: 20
+                            font_size: '14sp'
                         Label:
                             text: ('Присутствовало явно')
                             text_size: self.size
                             valign: "top"
                             halign:"right"
-                            font_size: 20
+                            font_size: '14sp'
 
 
                 BoxLayout:
@@ -166,7 +166,7 @@
                         text_size: self.size
                         halign: "left"
                         valign: 'middle'
-                        font_size: 20
+                        font_size: '14sp'
 
                     BoxLayout
                         orientation:'vertical'
@@ -177,12 +177,12 @@
                                 text: "Поверхность кожи"
                                 check_pos: "left"
                                 group: 'depth'
-                                font_size: 20
+                                font_size: '14sp'
                             LabelCheckBox:
                                 text: "Под кожей"
                                 check_pos: "left"
                                 group: 'depth'
-                                font_size: 20
+                                font_size: '14sp'
                         BoxLayout:
                             id: depthbox2
                             orientation: 'horizontal'
@@ -190,12 +190,12 @@
                                 text: "Распределенно"
                                 check_pos: "left"
                                 group: 'depth'
-                                font_size: 20
+                                font_size: '14sp'
                             LabelCheckBox:
                                 text: "И там и там"
                                 check_pos: "left"
                                 group: 'depth'
-                                font_size: 20
+                                font_size: '14sp'
 
                 BoxLayout:
                     orientation: 'vertical'
@@ -204,7 +204,7 @@
                         size_hint_y: 0.15
                         text_size: self.size
                         halign: "left"
-                        font_size: 20
+                        font_size: '14sp'
                     SliderResponse:
                         id: painSlider
                         id2: 'painSlider'
@@ -223,13 +223,13 @@
                             text_size: self.size
                             valign: "top"
                             halign:"left"
-                            font_size: 20
+                            font_size: '14sp'
                         Label:
                             text: '10 \n(Крайне болезненно)'
                             text_size: self.size
                             valign: "top"
                             halign:"right"
-                            font_size: 20
+                            font_size: '14sp'
 
                 BoxLayout
                     orientation: 'vertical'
@@ -238,7 +238,7 @@
                         size_hint_y: 0.15
                         text_size: self.size
                         halign: "left"
-                        font_size: 20
+                        font_size: '14sp'
                     SliderResponse:
                         id: tempSlider
                         id2: 'tempSlider'
@@ -258,14 +258,14 @@
                             text_size: self.size
                             valign: "top"
                             halign:"left"
-                            font_size: 20
+                            font_size: '14sp'
                         Label:
                             text: 'Горячо'
 
                             text_size: self.size
                             valign: "top"
                             halign:"right"
-                            font_size: 20
+                            font_size: '14sp'
 
                 BoxLayout
                     orientation: 'vertical'
@@ -274,7 +274,7 @@
                         size_hint_y: 0.15
                         text_size: self.size
                         halign: "left"
-                        font_size: 20
+                        font_size: '14sp'
                     SliderResponse:
                         id: phantomSlider
                         id2: 'phantomSlider'
@@ -293,13 +293,13 @@
                             text_size: self.size
                             valign: "top"
                             halign:"left"
-                            font_size: 20
+                            font_size: '14sp'
                         Label:
                             text: 'Заметно усилилась'
                             text_size: self.size
                             valign: "top"
                             halign:"right"
-                            font_size: 20
+                            font_size: '14sp'
 
                 #BoxLayout:
                 #    orientation: 'vertical'
@@ -309,7 +309,7 @@
                 #        text_size: self.size
                 #        halign: "left"
                 #        valign: 'middle'
-                #        font_size: 20
+                #        font_size: '14sp'
 
                 #    BoxLayout
                 #        orientation:'vertical'
@@ -346,7 +346,7 @@
                 Label:
                     text: 'Выберите слова, описывающие испытанное ощущение'
                     size_hint_y: 0.05
-                    font_size: 21
+                    font_size: '17sp'
                 BoxLayout:
                     padding: 25, 10
                     orientation: 'vertical'
@@ -359,7 +359,7 @@
                             text_size: self.size
                             halign: "left"
                             valign: 'middle'
-                            font_size: 20
+                            font_size: '16sp'
                         SliderResponse:
                             opacity: 0
                             id: vibrationSlider
@@ -379,7 +379,7 @@
                             text_size: self.size
                             halign: "left"
                             valign: 'middle'
-                            font_size: 20
+                            font_size: '16sp'
                         SliderResponse:
                             opacity: 0
                             id: flutterSlider
@@ -399,7 +399,7 @@
                             text_size: self.size
                             halign: "left"
                             valign: 'middle'
-                            font_size: 20
+                            font_size: '16sp'
                         SliderResponse:
                             opacity: 0
                             id: urgeSlider
@@ -419,7 +419,7 @@
                             text_size: self.size
                             halign: "left"
                             valign: 'middle'
-                            font_size: 20
+                            font_size: '16sp'
                         SliderResponse:
                             opacity: 0
                             id: touchSlider
@@ -439,7 +439,7 @@
                             text_size: self.size
                             halign: "left"
                             valign: 'middle'
-                            font_size: 20
+                            font_size: '16sp'
                         SliderResponse:
                             opacity: 0
                             id: pressureSlider
@@ -459,7 +459,7 @@
                             text_size: self.size
                             halign: "left"
                             valign: 'middle'
-                            font_size: 20
+                            font_size: '16sp'
                         SliderResponse:
                             opacity: 0
                             id: sharpSlider
@@ -479,7 +479,7 @@
                             text_size: self.size
                             halign: "left"
                             valign: 'middle'
-                            font_size: 20
+                            font_size: '16sp'
                         SliderResponse:
                             opacity: 0
                             id: prickSlider
@@ -499,7 +499,7 @@
                             text_size: self.size
                             halign: "left"
                             valign: 'middle'
-                            font_size: 20
+                            font_size: '16sp'
                         SliderResponse:
                             opacity: 0
                             id: electricSlider
@@ -519,7 +519,7 @@
                             text_size: self.size
                             halign: "left"
                             valign: 'middle'
-                            font_size: 20
+                            font_size: '16sp'
                         SliderResponse:
                             opacity: 0
                             id: shockSlider
@@ -539,7 +539,7 @@
                             text_size: self.size
                             halign: "left"
                             valign: 'middle'
-                            font_size: 20
+                            font_size: '16sp'
                         SliderResponse:
                             opacity: 0
                             id: pulseSlider
@@ -559,7 +559,7 @@
                             text_size: self.size
                             halign: "left"
                             valign: 'middle'
-                            font_size: 20
+                            font_size: '16sp'
                         SliderResponse:
                             opacity: 0
                             id: tickleSlider
@@ -579,7 +579,7 @@
                             text_size: self.size
                             halign: "left"
                             valign: 'middle'
-                            font_size: 20
+                            font_size: '16sp'
                         SliderResponse:
                             opacity: 0
                             id: itchSlider
@@ -599,7 +599,7 @@
                             text_size: self.size
                             halign: "left"
                             valign: 'middle'
-                            font_size: 20
+                            font_size: '16sp'
                         SliderResponse:
                             opacity: 0
                             id: tingleSlider
@@ -619,7 +619,7 @@
                             text_size: self.size
                             halign: "left"
                             valign: 'middle'
-                            font_size: 20
+                            font_size: '16sp'
                         SliderResponse:
                             opacity: 0
                             id: numbSlider
@@ -639,7 +639,7 @@
                             text_size: self.size
                             halign: "left"
                             valign: 'middle'
-                            font_size: 20
+                            font_size: '16sp'
                         SliderResponse:
                             opacity: 0
                             id: warmSlider
@@ -659,7 +659,7 @@
                             text_size: self.size
                             halign: "left"
                             valign: 'middle'
-                            font_size: 20
+                            font_size: '16sp'
                         SliderResponse:
                             opacity: 0
                             id: coolSlider
@@ -694,7 +694,7 @@
                         size: self.size
                 canvas.after:
                     PopMatrix
-                font_size: 20
+                font_size: '18sp'
                 ImageProperties:
                     id: img0
                     id2: 'img0'
@@ -713,7 +713,7 @@
                         size: self.size
                 canvas.after:
                     PopMatrix
-                font_size: 20
+                font_size: '18sp'
                 ImageProperties:
                     id: img1
                     id2: 'img1'
@@ -731,7 +731,7 @@
                         size: self.size
                 canvas.after:
                     PopMatrix
-                font_size: 20
+                font_size: '18sp'
                 ImageProperties:
                     id: img2
                     id2: 'img2'
@@ -749,7 +749,7 @@
                         size: self.size
                 canvas.after:
                     PopMatrix
-                font_size: 20
+                font_size: '18sp'
                 ImageProperties:
                     id: img3
                     id2: 'img3'
@@ -767,7 +767,7 @@
                         size: self.size
                 canvas.after:
                     PopMatrix
-                font_size: 20
+                font_size: '18sp'
                 ImageProperties:
                     id: img4
                     id2: 'img4'
@@ -785,7 +785,7 @@
                         size: self.size
                 canvas.after:
                     PopMatrix
-                font_size: 20
+                font_size: '16sp'
                 ImageProperties:
                     id: img5
                     id2: 'img5'
@@ -804,7 +804,7 @@
             text: 'Очистить'
             pos_hint: {'right': 0.3, 'y':0}
             size_hint: 0.3,0.08
-            font_size: 30
+            font_size: '25sp'
             background_color: [1.0, 0.4980392156862745, 0.054901960784313725]
 
 
@@ -815,7 +815,7 @@
             text: 'Сохранить'
             pos_hint: {'right': 1, 'y':0}
             size_hint: 0.3,0.08
-            font_size: 30
+            font_size: '25sp'
             background_color: [0.17254901960784313, 0.6274509803921569, 0.17254901960784313, 1]
 
 
@@ -825,5 +825,5 @@
             text: 'Кадр'
             pos_hint: {'right': 0.65, 'y':0.0}
             size_hint: 0.3,0.05
-            font_size: 30
+            font_size: '25sp'
             background_color: [0,0,0]
