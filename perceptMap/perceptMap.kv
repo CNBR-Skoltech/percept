@@ -62,7 +62,7 @@
                         size_hint_y: 0.15
                         text_size: self.size
                         halign: "left"
-                        font_size: 16
+                        font_size: 20
                     SliderResponse:
                         id: maintactileSlider
                         id2:'maintactileSlider'
@@ -116,13 +116,13 @@
                             text_size: self.size
                             valign: "top"
                             halign:"left"
-                            font_size: 12
+                            font_size: 20
                         Label:
                             text: 'Естественно'
                             text_size: self.size
                             valign: "top"
                             halign:"right"
-                            font_size: 12
+                            font_size: 20
 
                 BoxLayout
                     orientation: 'vertical'
@@ -131,7 +131,7 @@
                         size_hint_y: 0.15
                         text_size: self.size
                         halign: "left"
-                        font_size: 16
+                        font_size: 20
                     SliderResponse:
                         id: motorSlider
                         id2:'motorSlider'
@@ -149,13 +149,13 @@
                             text_size: self.size
                             valign: "top"
                             halign:"left"
-                            font_size: 14
+                            font_size: 20
                         Label:
                             text: ('Присутствовало явно')
                             text_size: self.size
                             valign: "top"
                             halign:"right"
-                            font_size: 14
+                            font_size: 20
 
 
                 BoxLayout:
@@ -166,7 +166,7 @@
                         text_size: self.size
                         halign: "left"
                         valign: 'middle'
-                        font_size: 16
+                        font_size: 20
 
                     BoxLayout
                         orientation:'vertical'
@@ -177,12 +177,12 @@
                                 text: "Поверхность кожи"
                                 check_pos: "left"
                                 group: 'depth'
-                                font_size: 16
+                                font_size: 20
                             LabelCheckBox:
                                 text: "Под кожей"
                                 check_pos: "left"
                                 group: 'depth'
-                                font_size: 16
+                                font_size: 20
                         BoxLayout:
                             id: depthbox2
                             orientation: 'horizontal'
@@ -190,12 +190,12 @@
                                 text: "Распределенно"
                                 check_pos: "left"
                                 group: 'depth'
-                                font_size: 16
+                                font_size: 20
                             LabelCheckBox:
                                 text: "И там и там"
                                 check_pos: "left"
                                 group: 'depth'
-                                font_size: 16
+                                font_size: 20
 
                 BoxLayout:
                     orientation: 'vertical'
@@ -204,7 +204,7 @@
                         size_hint_y: 0.15
                         text_size: self.size
                         halign: "left"
-                        font_size: 16
+                        font_size: 20
                     SliderResponse:
                         id: painSlider
                         id2: 'painSlider'
@@ -223,13 +223,13 @@
                             text_size: self.size
                             valign: "top"
                             halign:"left"
-                            font_size: 14
+                            font_size: 20
                         Label:
                             text: '10 \n(Крайне болезненно)'
                             text_size: self.size
                             valign: "top"
                             halign:"right"
-                            font_size: 14
+                            font_size: 20
 
                 BoxLayout
                     orientation: 'vertical'
@@ -238,7 +238,7 @@
                         size_hint_y: 0.15
                         text_size: self.size
                         halign: "left"
-                        font_size: 16
+                        font_size: 20
                     SliderResponse:
                         id: tempSlider
                         id2: 'tempSlider'
@@ -254,16 +254,18 @@
                         orientation: 'horizontal'
                         Label:
                             text: 'Холодно'
+
                             text_size: self.size
                             valign: "top"
                             halign:"left"
-                            font_size: 14
+                            font_size: 20
                         Label:
                             text: 'Горячо'
+
                             text_size: self.size
                             valign: "top"
                             halign:"right"
-                            font_size: 14
+                            font_size: 20
 
                 BoxLayout
                     orientation: 'vertical'
@@ -272,7 +274,7 @@
                         size_hint_y: 0.15
                         text_size: self.size
                         halign: "left"
-                        font_size: 15
+                        font_size: 20
                     SliderResponse:
                         id: phantomSlider
                         id2: 'phantomSlider'
@@ -291,13 +293,13 @@
                             text_size: self.size
                             valign: "top"
                             halign:"left"
-                            font_size: 14
+                            font_size: 20
                         Label:
                             text: 'Заметно усилилась'
                             text_size: self.size
                             valign: "top"
                             halign:"right"
-                            font_size: 14
+                            font_size: 20
 
                 #BoxLayout:
                 #    orientation: 'vertical'
@@ -797,16 +799,20 @@
         #    pos_hint: {'right': 0.95, 'y':0}
         #    size_hint: 0.15,0.04
 
+
         SensationButton:
             id2: 'clear'
-            text: 'Clear current line'
-            pos_hint: {'right': 0.8, 'y':0}
-            size_hint: 0.15,0.04
+            text: 'Очистить'
+            pos_hint: {'right': 0.3, 'y':0}
+            size_hint: 0.3,0.08
+            font_size: 30
+            background_color: [1.0, 0.4980392156862745, 0.054901960784313725]
 
         # comment if using in auto mode
         SaveResetButton:
             id2: 'clear'
-            text: 'Save\nand\nReset'
+            text: 'Сохранить'
             pos_hint: {'right': 1, 'y':0}
-            size_hint: 0.05,0.04
-            font_size: 9
+            size_hint: 0.3,0.08
+            font_size: 30
+            background_color: [0.17254901960784313, 0.6274509803921569, 0.17254901960784313, 1]
