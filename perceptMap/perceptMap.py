@@ -56,6 +56,8 @@ class UserResponse(BoxLayout):
             self.ids['img%d' % idx].imglabel = tabImg[0]
             self.ids['tab%d' % idx].text = tabImg[1]
 
+        self.ids['frameLabel']._label._text = 'Кадр: '+str(self.repNumber)
+
         # PLACEHOLDER: connect to message server, subscribe to messages
         # PLACEHOLDER: start listener thread
         # self.listener=Thread(target=self.pyConsumer)
@@ -95,11 +97,13 @@ class UserResponse(BoxLayout):
     def clear_window_canvas(self):
         """Clears all drawn lines on the image canvas"""
 
+
         for idx in range(len(self.imgfiles)):
             self.ids['img%d' % idx].clear_drawn_lines('all')
 
     def reset_radio_check_slider(self):
         """resets radiobutton, checkbox and slider values"""
+
 
         self.ids['qualityAccordion'].collapse = False
         self.ids['modalityAccordion'].collapse = True
@@ -149,6 +153,11 @@ class UserResponse(BoxLayout):
     #     pass
 
 
+class FrameLabel(Button):
+    def __init__(self, **kwargs):
+        super(FrameLabel, self).__init__(**kwargs)
+
+
 class SaveResetButton(Button):
     """Triggers file save and GUI reset when GUI is run in manual-mode
 
@@ -167,6 +176,9 @@ class SaveResetButton(Button):
         rootwidget.clear_window_canvas()
         rootwidget.reset_radio_check_slider()
         rootwidget.repNumber += 1
+        rootwidget.ids['frameLabel']._label._text = 'Кадр: ' + str(rootwidget.repNumber)
+        rootwidget.ids['frameLabel']._trigger_texture()
+        # import pdb; pdb.set_trace()
         rootwidget.sensationNumber = 0
         rootwidget.ids["imageTab"].switch_to(rootwidget.ids["imageTab"]._original_tab)
         # prevent propagation of touch
@@ -222,6 +234,7 @@ class LabelCheckResponse(CheckBox, Label):
         """
 
         rootwidget = self.get_root_window().children[-1]
+
         if isactive:  # is active
             if not self.group:  # checkbox
                 for responseObj in self.parent.children[:-1]:
@@ -344,6 +357,7 @@ class FloatStencil(FloatLayout, StencilView):
 
     def __init__(self, **kwargs):
         super(FloatStencil, self).__init__(**kwargs)
+
 
 
 class CustomImage(Image):
