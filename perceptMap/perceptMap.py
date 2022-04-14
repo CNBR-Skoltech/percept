@@ -15,6 +15,7 @@ from kivy.uix.accordion import Accordion
 from kivy.uix.popup import Popup
 import yaml
 import os
+from pylsl import resolve_streams, StreamOutlet, StreamInlet
 
 
 class UserResponse(BoxLayout):
@@ -71,8 +72,8 @@ class UserResponse(BoxLayout):
         self.ids['responseAcc'].copy_accordion()
 
         fname = os.path.join(self.rootPath, self.saveFolder, self.saveFolder+"_R%03d" % self.repNumber)
-        radiosliderdict = self.ids['responseAcc'].labelCheckDict.copy()
-        sensationdict = self.ids['floatStencilArea'].lineDict.copy()
+        radiosliderdict = self.ids['responseAcc'].labelCheckDict.copy() #Сюда встравляются значения слайдера
+        sensationdict = self.ids['floatStencilArea'].lineDict.copy() #Сюда похоже заносится все что нарисовано
         movedirdict = self.ids['floatStencilArea'].moveDict.copy()
         imgpropertiesdict = {'size': list(self.ids['img0'].get_norm_image_size()), 'pos': list(self.ids['img0'].pos)}
 
@@ -111,8 +112,13 @@ class UserResponse(BoxLayout):
             if 'Box' in widg:
                 self.ids[widg].set_labels_and_radio(False)
         for iKey in ['naturalSlider', 'painSlider', 'phantomSlider', 'motorSlider','tempSlider','maintactileSlider']:
-            self.ids[iKey].value = 5
+
+            if iKey in ['naturalSlider', 'painSlider','tempSlider', 'phantomSlider' ]:
+                self.ids[iKey].value = 0
+            else:
+                self.ids[iKey].value = 5
             self.ids[iKey].cursor_image = '../ImageBank/sliderVal.png'
+
         for i in self.ids['depthbox1'].children:
             i.active=False
         for i in self.ids['depthbox2'].children:
@@ -342,6 +348,84 @@ class SensationButton(Button):
         # prevent propagation of touch
         stencilobj.buttonPress = True
         return True
+
+
+class RestoreButton(Button):
+    id2 = StringProperty('')
+
+
+
+    def __init__(self, **kwargs):
+        super(RestoreButton, self).__init__(**kwargs)
+
+    def on_press(self):
+
+        try:
+            rootwidget = self.get_root_window().children[-1]
+            #rootwidget.ids[0].source = '../ImageBank/Rpalmar_.png'
+            previous_value=rootwidget.repNumber
+
+
+            print('Previous values equals to', previous_value)
+
+            rootwidget.ids['img0'].source = '../data/default/default_R' + str(previous_value) + '_Rpalmar.png'
+
+            yaml_file_slider='../data/default/default_R' + str(previous_value) + '_RadioCheckSlider.yml'
+            #default_R346_RadioCheckSlider.yml
+            with open(yaml_file_slider, 'r') as stream:
+                data_loaded = yaml.safe_load(stream)['Sensation0']
+
+
+
+        except:
+            print('No previous value files')
+
+
+
+
+        sensekey = 'Sensation 0'
+        responseaccobj = self.get_parent_window().children[-1].ids['responseAcc']
+
+        # responseaccobj.labelCheckDict= data_loaded
+
+        keys = data_loaded.keys()
+        for i in keys:
+            responseaccobj.tempDict[i] = data_loaded[i]
+
+        for iKey in keys:
+            rootwidget.ids[iKey].value = data_loaded[iKey]
+        #responseaccobj.tempDict.clear()
+        #self.ids['responseAcc'].copy_accordion()
+
+        #fname = os.path.join(self.rootPath, self.saveFolder, self.saveFolder+"_R%03d" % self.repNumber)
+        #radiosliderdict = self.ids['responseAcc'].labelCheckDict.copy() #Сюда встравляются значения слайдера
+        #sensationdict = self.ids['floatStencilArea'].lineDict.copy() #Сюда похоже заносится все что нарисовано
+        #movedirdict = self.ids['floatStencilArea'].moveDict.copy()
+        #imgpropertiesdict = {'size': list(self.ids['img0'].get_norm_image_size()), 'pos': list(self.ids['img0'].pos)}
+
+        #if sensationdict or radiosliderdict['Sensation0']:
+        #    if not (self.saveFolder in self.responseAnnot):
+        #        self.responseAnnot.add(self.saveFolder)
+
+        #    if not os.path.exists(os.path.join(self.rootPath, self.saveFolder)):
+        #            os.makedirs(os.path.join(self.rootPath, self.saveFolder))
+
+        #    if sensationdict:
+        #        with open(fname+'_imPixel.yml', 'w') as outfile:
+        #            outfile.write(yaml.dump(imgpropertiesdict, default_flow_style=False))
+        #            outfile.write(yaml.dump(sensationdict, default_flow_style=False))
+        #        self.ids['floatStencilArea'].lineDict.clear()
+
+        #    if radiosliderdict['Sensation0']:
+        #        with open(fname+'_RadioCheckSlider.yml', 'w') as outfile:
+        #            outfile.write(yaml.dump(radiosliderdict, default_flow_style=False))
+        #            self.ids['responseAcc'].labelCheckDict.clear()
+
+
+        #rootwidget.ids['img0'].source = '/data/default/default_R' + str(previous_value) + '_Rpalmar.png'
+
+        print(10)
+
 
 
 class FloatStencil(FloatLayout, StencilView):
