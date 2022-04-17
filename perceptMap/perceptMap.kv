@@ -158,44 +158,44 @@
                             font_size: '14sp'
 
 
-                BoxLayout:
-                    orientation: 'vertical'
-                    Label:
-                        text: 'Глубина испытанного ощущение?'
-                        size_hint_y: 0.50
-                        text_size: self.size
-                        halign: "left"
-                        valign: 'middle'
-                        font_size: '14sp'
+                #BoxLayout:
+                #    orientation: 'vertical'
+                #    Label:
+                #        text: 'Глубина испытанного ощущение?'
+                #        size_hint_y: 0.50
+                #        text_size: self.size
+                #        halign: "left"
+                #        valign: 'middle'
+                #        font_size: '14sp'
 
-                    BoxLayout
-                        orientation:'vertical'
-                        BoxLayout:
-                            id: depthbox1
-                            orientation: 'horizontal'
-                            LabelCheckBox:
-                                text: "Поверхность кожи"
-                                check_pos: "left"
-                                group: 'depth'
-                                font_size: '14sp'
-                            LabelCheckBox:
-                                text: "Под кожей"
-                                check_pos: "left"
-                                group: 'depth'
-                                font_size: '14sp'
-                        BoxLayout:
-                            id: depthbox2
-                            orientation: 'horizontal'
-                            LabelCheckBox:
-                                text: "Распределенно"
-                                check_pos: "left"
-                                group: 'depth'
-                                font_size: '14sp'
-                            LabelCheckBox:
-                                text: "И там и там"
-                                check_pos: "left"
-                                group: 'depth'
-                                font_size: '14sp'
+                #    BoxLayout
+                #        orientation:'vertical'
+                #        BoxLayout:
+                #            id: depthbox1
+                #            orientation: 'horizontal'
+                #            LabelCheckBox:
+                #                text: "Поверхность кожи"
+                #                check_pos: "left"
+                #                group: 'depth'
+                #                font_size: '14sp'
+                #            LabelCheckBox:
+                #                text: "Под кожей"
+                #                check_pos: "left"
+                #                group: 'depth'
+                #                font_size: '14sp'
+                #        BoxLayout:
+                #            id: depthbox2
+                #            orientation: 'horizontal'
+                #            LabelCheckBox:
+                #                text: "Распределенно"
+                #                check_pos: "left"
+                #                group: 'depth'
+                #                font_size: '14sp'
+                #            LabelCheckBox:
+                #                text: "И там и там"
+                #                check_pos: "left"
+                #                group: 'depth'
+                #                font_size: '14sp'
 
                 BoxLayout:
                     orientation: 'vertical'
@@ -683,7 +683,7 @@
             tab_width: 100
 
             TabbedPanelItem:
-                text:'Правая внутренняя'
+                text:''
                 id:tab0
                 background_down: "atlas://data/images/defaulttheme/button_pressed"
                 canvas.before:
@@ -703,7 +703,7 @@
                     opacity: 1
 
             TabbedPanelItem:
-                text:'Правая внутренняя'
+                text:''
                 id:tab1
                 background_down: "atlas://data/images/defaulttheme/button_pressed"
                 canvas.before:
@@ -722,7 +722,7 @@
                     opacity: 1
 
             TabbedPanelItem:
-                text:'Правая внутренняя'
+                text:''
                 id:tab2
                 background_down: "atlas://data/images/defaulttheme/button_pressed"
                 canvas.before:
@@ -741,7 +741,7 @@
                     opacity: 1
 
             TabbedPanelItem:
-                text:'Правая внутренняя'
+                text:''
                 id:tab3
                 background_down: "atlas://data/images/defaulttheme/button_pressed"
                 canvas.before:
@@ -760,7 +760,10 @@
                     opacity: 1
 
             TabbedPanelItem:
+                text:''
+
                 id:tab4
+                #Label: "Kek"
                 background_down: "atlas://data/images/defaulttheme/button_pressed"
                 canvas.before:
                     PushMatrix

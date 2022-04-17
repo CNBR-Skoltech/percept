@@ -90,10 +90,17 @@ class UserResponse(BoxLayout):
                     outfile.write(yaml.dump(sensationdict, default_flow_style=False))
                 self.ids['floatStencilArea'].lineDict.clear()
 
+                #for idx, tabImg in enumerate(zip(imgfiles, tablabels)):
+                #    self.ids['img%d' % idx].source = '../ImageBank/%s.png' % tabImg[0]
+                #    self.ids['img%d' % idx].imglabel = tabImg[0]
+                #    self.ids['tab%d' % idx].text = tabImg[1]
+
             if radiosliderdict['Sensation0']:
                 with open(fname+'_RadioCheckSlider.yml', 'w') as outfile:
                     outfile.write(yaml.dump(radiosliderdict, default_flow_style=False))
                     self.ids['responseAcc'].labelCheckDict.clear()
+
+
 
     def clear_window_canvas(self):
         """Clears all drawn lines on the image canvas"""
@@ -119,10 +126,10 @@ class UserResponse(BoxLayout):
                 self.ids[iKey].value = 5
             self.ids[iKey].cursor_image = '../ImageBank/sliderVal.png'
 
-        for i in self.ids['depthbox1'].children:
-            i.active=False
-        for i in self.ids['depthbox2'].children:
-            i.active = False
+        #for i in self.ids['depthbox1'].children:
+        #    i.active=False
+        #for i in self.ids['depthbox2'].children:
+        #    i.active = False
         #for i in self.ids['PLPbox1'].children:
         #    i.active=False
         #for i in self.ids['PLPbox2'].children:
@@ -180,6 +187,26 @@ class SaveResetButton(Button):
         stencilobj = self.get_root_window().children[-1].ids['floatStencilArea']
         rootwidget.save_data()
         rootwidget.clear_window_canvas()
+
+        imgfiles=['Rpalmar', 'Rdorsum', 'Farms', 'Barms', 'Lpalmar', 'Ldorsum']
+        tablabels= ['Right\nPalm', 'Right\nDorsum', 'Arms\nFront', 'Arms\nBack', 'Left\nPalm', 'Left\nDorsum']
+
+        for idx, tabImg in enumerate(zip(imgfiles, tablabels)):
+            rootwidget.ids['img%d' % idx].source = '../ImageBank/%s.png' % tabImg[0]
+            #self.ids['img%d' % idx].imglabel = tabImg[0]
+            #self.ids['tab%d' % idx].text = tabImg[1]
+
+        #for idx in  range(len(['Barms','Farms','Ldorsum','Lpalmar','Rdorsum','Rpalmar'])):
+
+        #    try:
+        #        rootwidget.ids['img%d' % idx].source ='../ImageBank/%s.png' % tabImg[0]
+
+        #        self.ids['img%d' % idx].source = '../ImageBank/%s.png' % tabImg[0]
+        #    except:
+        #        print('No', i)
+
+
+
         rootwidget.reset_radio_check_slider()
         rootwidget.repNumber += 1
         rootwidget.ids['frameLabel']._label._text = 'Кадр: ' + str(rootwidget.repNumber)
@@ -246,6 +273,9 @@ class LabelCheckResponse(CheckBox, Label):
                 for responseObj in self.parent.children[:-1]:
                     responseObj.canvas.opacity = 1              # canvas of boxlayout
                     responseObj.disabled = False
+                    #self.cursor_image = 'atlas://data/images/defaulttheme/slider_cursor'
+                    #self.value_pos = touch.pos
+                    #rootwidget.ids['responseAcc'].tempDict[self.id2] = round(self.value, 3)
 
                 print(self.text + ' enabled: ' + str(self.active))
 
@@ -353,8 +383,6 @@ class SensationButton(Button):
 class RestoreButton(Button):
     id2 = StringProperty('')
 
-
-
     def __init__(self, **kwargs):
         super(RestoreButton, self).__init__(**kwargs)
 
@@ -363,25 +391,40 @@ class RestoreButton(Button):
         try:
             rootwidget = self.get_root_window().children[-1]
             #rootwidget.ids[0].source = '../ImageBank/Rpalmar_.png'
-            previous_value=rootwidget.repNumber
-
-
+            previous_value=rootwidget.repNumber-1
             print('Previous values equals to', previous_value)
 
-            rootwidget.ids['img0'].source = '../data/default/default_R' + str(previous_value) + '_Rpalmar.png'
+            pics=['Rpalmar', 'Rdorsum', 'Farms', 'Barms', 'Lpalmar', 'Ldorsum']
+
+            for i in range(len(pics)):
+                pic_inst=pics[i]
+                try:
+                    if os.path.exists('../data/default/default_R' + str(previous_value) + '_'+pic_inst+'.png'):
+                        rootwidget.ids['img'+str(i)].source = '../data/default/default_R' + str(previous_value) + '_'+pic_inst+'.png'
+                except:
+                    print('No picture', pic_inst)
+
+
 
             yaml_file_slider='../data/default/default_R' + str(previous_value) + '_RadioCheckSlider.yml'
             #default_R346_RadioCheckSlider.yml
             with open(yaml_file_slider, 'r') as stream:
                 data_loaded = yaml.safe_load(stream)['Sensation0']
 
+            yaml_file_image = '../data/default/default_R' + str(previous_value) + '_imPixel.yml'
+            with open(yaml_file_image, 'r') as stream:
+                image_data_loaded = yaml.safe_load(stream)#['Sensation0']
 
+                #imgpropertiesdict = {'size': list(self.ids['img0'].get_norm_image_size()),
+                #1: image_data_loaded['pos']: list(self.ids['img0'].pos)}
+                #2: про сайз
+                #3: sensationdict = self.ids['floatStencilArea'].lineDict.copy()
+
+                #outfile.write(yaml.dump(imgpropertiesdict, default_flow_style=False))
+                #outfile.write(yaml.dump(sensationdict, default_flow_style=False))
 
         except:
             print('No previous value files')
-
-
-
 
         sensekey = 'Sensation 0'
         responseaccobj = self.get_parent_window().children[-1].ids['responseAcc']
@@ -394,35 +437,15 @@ class RestoreButton(Button):
 
         for iKey in keys:
             rootwidget.ids[iKey].value = data_loaded[iKey]
-        #responseaccobj.tempDict.clear()
-        #self.ids['responseAcc'].copy_accordion()
-
-        #fname = os.path.join(self.rootPath, self.saveFolder, self.saveFolder+"_R%03d" % self.repNumber)
-        #radiosliderdict = self.ids['responseAcc'].labelCheckDict.copy() #Сюда встравляются значения слайдера
-        #sensationdict = self.ids['floatStencilArea'].lineDict.copy() #Сюда похоже заносится все что нарисовано
-        #movedirdict = self.ids['floatStencilArea'].moveDict.copy()
-        #imgpropertiesdict = {'size': list(self.ids['img0'].get_norm_image_size()), 'pos': list(self.ids['img0'].pos)}
-
-        #if sensationdict or radiosliderdict['Sensation0']:
-        #    if not (self.saveFolder in self.responseAnnot):
-        #        self.responseAnnot.add(self.saveFolder)
-
-        #    if not os.path.exists(os.path.join(self.rootPath, self.saveFolder)):
-        #            os.makedirs(os.path.join(self.rootPath, self.saveFolder))
-
-        #    if sensationdict:
-        #        with open(fname+'_imPixel.yml', 'w') as outfile:
-        #            outfile.write(yaml.dump(imgpropertiesdict, default_flow_style=False))
-        #            outfile.write(yaml.dump(sensationdict, default_flow_style=False))
-        #        self.ids['floatStencilArea'].lineDict.clear()
-
-        #    if radiosliderdict['Sensation0']:
-        #        with open(fname+'_RadioCheckSlider.yml', 'w') as outfile:
-        #            outfile.write(yaml.dump(radiosliderdict, default_flow_style=False))
-        #            self.ids['responseAcc'].labelCheckDict.clear()
 
 
-        #rootwidget.ids['img0'].source = '/data/default/default_R' + str(previous_value) + '_Rpalmar.png'
+        for i in  ['Barms','Farms','Ldorsum','Lpalmar','Rdorsum','Rpalmar']:
+
+            try:
+                rootwidget.ids['floatStencilArea'].lineDict['sensation0_'+i]=image_data_loaded['sensation0_'+i]
+            except:
+                print('No', i)
+
 
         print(10)
 
@@ -557,7 +580,7 @@ class PerceptMap(App):
             'windowColor': (1, 1, 1, 1),
             'windowBorderless': False,
             'imgFiles': ['Rpalmar', 'Rdorsum', 'Farms', 'Barms', 'Lpalmar', 'Ldorsum'],
-            'tabLabels': ['Right\nPalm', 'Right\nDorsum', 'Arms\nFront', 'Arms\nBack', 'Left\nPalm', 'Left\nDorsum'],
+            'tabLabels': ['Rpalmar', 'Rdorsum', 'Farms', 'Barms', 'Lpalmar', 'Ldorsum'], #['Right\nPalm', 'Right\nDorsum', 'Arms\nFront', 'Arms\nBack', 'Left\nPalm', 'Left\nDorsum'],
             'trialNumber': 0
         })
 
