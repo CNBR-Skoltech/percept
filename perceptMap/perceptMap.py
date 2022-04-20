@@ -63,7 +63,7 @@ class UserResponse(BoxLayout):
         for idx, tabImg in enumerate(zip(imgfiles, tablabels)):
             self.ids['img%d' % idx].source = '../ImageBank/%s.png' % tabImg[0]
             self.ids['img%d' % idx].imglabel = tabImg[0]
-            self.ids['tab%d' % idx].text = tabImg[1]
+            # self.ids['tab%d' % idx].text = tabImg[1]
 
         self.ids['frameLabel']._label._text = 'Кадр: '+str(self.repNumber)
 
