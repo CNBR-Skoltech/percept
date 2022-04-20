@@ -43,11 +43,12 @@
         size_hint_x: 0.6
         orientation: 'vertical'
         #min_space: sp(60)
+        font_size: '20sp'
 
         AccordionItem:              # font size set in style.kv
             id: qualityAccordion
             collapse: False
-            title: "Quality"
+            title: "Ощущение"
             text_size: self.size
 
             BoxLayout
@@ -59,14 +60,14 @@
                     orientation: 'vertical'
                     Label:
                         text: 'Интенсивность тактильного ощущения?'
-                        size_hint_y: 0.15
+                        size_hint_y: 0.1
                         text_size: self.size
                         halign: "left"
-                        font_size: '14sp'
+                        font_size: '20sp'
                     SliderResponse:
                         id: maintactileSlider
                         id2:'maintactileSlider'
-                        size_hint_y: 0.25
+                        size_hint_y: 0.2
                         min: 0
                         max: 10
                         step: 0.1
@@ -74,30 +75,30 @@
                         orientation: 'horizontal'
 
                     BoxLayout:
-                        size_hint_y: 0.2
+                        size_hint_y: 0.1
                         orientation: 'horizontal'
                         Label:
                             text: ('0')
                             text_size: self.size
                             valign: "top"
                             halign:"left"
-                            font_size: '14sp'
+                            font_size: '20sp'
                         Label:
                             text: '10'
                             text_size: self.size
                             valign: "top"
                             halign:"right"
-                            font_size: '14sp'
+                            font_size: '20sp'
 
 
                 BoxLayout
                     orientation: 'vertical'
                     Label:
-                        text: 'Есстественно ли было тактильное ощущение?'
+                        text: 'Естественно ли было тактильное ощущение?'
                         size_hint_y: 0.15
                         text_size: self.size
                         halign: "left"
-                        font_size: '14sp'
+                        font_size: '20sp'
                     SliderResponse:
                         id: naturalSlider
                         id2:'naturalSlider'
@@ -116,13 +117,13 @@
                             text_size: self.size
                             valign: "top"
                             halign:"left"
-                            font_size: '14sp'
+                            font_size: '20sp'
                         Label:
                             text: 'Естественно'
                             text_size: self.size
                             valign: "top"
                             halign:"right"
-                            font_size: '14sp'
+                            font_size: '20sp'
 
                 BoxLayout
                     orientation: 'vertical'
@@ -131,7 +132,7 @@
                         size_hint_y: 0.15
                         text_size: self.size
                         halign: "left"
-                        font_size: '14sp'
+                        font_size: '20sp'
                     SliderResponse:
                         id: motorSlider
                         id2:'motorSlider'
@@ -149,53 +150,13 @@
                             text_size: self.size
                             valign: "top"
                             halign:"left"
-                            font_size: '14sp'
+                            font_size: '20sp'
                         Label:
                             text: ('Присутствовало явно')
                             text_size: self.size
                             valign: "top"
                             halign:"right"
-                            font_size: '14sp'
-
-
-                #BoxLayout:
-                #    orientation: 'vertical'
-                #    Label:
-                #        text: 'Глубина испытанного ощущение?'
-                #        size_hint_y: 0.50
-                #        text_size: self.size
-                #        halign: "left"
-                #        valign: 'middle'
-                #        font_size: '14sp'
-
-                #    BoxLayout
-                #        orientation:'vertical'
-                #        BoxLayout:
-                #            id: depthbox1
-                #            orientation: 'horizontal'
-                #            LabelCheckBox:
-                #                text: "Поверхность кожи"
-                #                check_pos: "left"
-                #                group: 'depth'
-                #                font_size: '14sp'
-                #            LabelCheckBox:
-                #                text: "Под кожей"
-                #                check_pos: "left"
-                #                group: 'depth'
-                #                font_size: '14sp'
-                #        BoxLayout:
-                #            id: depthbox2
-                #            orientation: 'horizontal'
-                #            LabelCheckBox:
-                #                text: "Распределенно"
-                #                check_pos: "left"
-                #                group: 'depth'
-                #                font_size: '14sp'
-                #            LabelCheckBox:
-                #                text: "И там и там"
-                #                check_pos: "left"
-                #                group: 'depth'
-                #                font_size: '14sp'
+                            font_size: '20sp'
 
                 BoxLayout:
                     orientation: 'vertical'
@@ -204,7 +165,7 @@
                         size_hint_y: 0.15
                         text_size: self.size
                         halign: "left"
-                        font_size: '14sp'
+                        font_size: '20sp'
                     SliderResponse:
                         id: painSlider
                         id2: 'painSlider'
@@ -223,13 +184,13 @@
                             text_size: self.size
                             valign: "top"
                             halign:"left"
-                            font_size: '14sp'
+                            font_size: '20sp'
                         Label:
                             text: '10 \n(Крайне болезненно)'
                             text_size: self.size
                             valign: "top"
                             halign:"right"
-                            font_size: '14sp'
+                            font_size: '20sp'
 
                 BoxLayout
                     orientation: 'vertical'
@@ -238,7 +199,7 @@
                         size_hint_y: 0.15
                         text_size: self.size
                         halign: "left"
-                        font_size: '14sp'
+                        font_size: '20sp'
                     SliderResponse:
                         id: tempSlider
                         id2: 'tempSlider'
@@ -258,14 +219,14 @@
                             text_size: self.size
                             valign: "top"
                             halign:"left"
-                            font_size: '14sp'
+                            font_size: '20sp'
                         Label:
                             text: 'Горячо'
 
                             text_size: self.size
                             valign: "top"
                             halign:"right"
-                            font_size: '14sp'
+                            font_size: '20sp'
 
                 BoxLayout
                     orientation: 'vertical'
@@ -274,7 +235,7 @@
                         size_hint_y: 0.15
                         text_size: self.size
                         halign: "left"
-                        font_size: '14sp'
+                        font_size: '20sp'
                     SliderResponse:
                         id: phantomSlider
                         id2: 'phantomSlider'
@@ -293,52 +254,17 @@
                             text_size: self.size
                             valign: "top"
                             halign:"left"
-                            font_size: '14sp'
+                            font_size: '20sp'
                         Label:
                             text: 'Заметно усилилась'
                             text_size: self.size
                             valign: "top"
                             halign:"right"
-                            font_size: '14sp'
-
-                #BoxLayout:
-                #    orientation: 'vertical'
-                #    Label:
-                #        text: 'Where do you feel pain in your phantom limb?'
-                #        size_hint_y: 0.50
-                #        text_size: self.size
-                #        halign: "left"
-                #        valign: 'middle'
-                #        font_size: '14sp'
-
-                #    BoxLayout
-                #        orientation:'vertical'
-                #        BoxLayout:
-                #            id: PLPbox1
-                #            orientation: 'horizontal'
-                #            LabelCheckBox:
-                #                text: "Fingertips"
-                #                check_pos: "left"
-                #                group: 'PLP'
-                #            LabelCheckBox:
-                #                text: "Wrist"
-                #                check_pos: "left"
-                #                group: 'PLP'
-                #        BoxLayout:
-                #            id: PLPbox2
-                #            orientation: 'horizontal'
-                #            LabelCheckBox:
-                #                text: "Whole hand"
-                #                check_pos: "left"
-                #                group: 'PLP'
-                #            LabelCheckBox:
-                #                text: "All of the above"
-                #                check_pos: "left"
-                #                group: 'PLP'
+                            font_size: '20sp'
 
         AccordionItem:
             id: modalityAccordion
-            title: "Modality"
+            title: "Дополнительно"
             collapse: True
             BoxLayout
                 #spacing: 5
@@ -346,7 +272,7 @@
                 Label:
                     text: 'Выберите слова, описывающие испытанное ощущение'
                     size_hint_y: 0.05
-                    font_size: '17sp'
+                    font_size: '20sp'
                 BoxLayout:
                     padding: 25, 10
                     orientation: 'vertical'
@@ -359,7 +285,7 @@
                             text_size: self.size
                             halign: "left"
                             valign: 'middle'
-                            font_size: '16sp'
+                            font_size: '20sp'
                         SliderResponse:
                             opacity: 0
                             id: vibrationSlider
@@ -379,7 +305,7 @@
                             text_size: self.size
                             halign: "left"
                             valign: 'middle'
-                            font_size: '16sp'
+                            font_size: '20sp'
                         SliderResponse:
                             opacity: 0
                             id: flutterSlider
@@ -399,7 +325,7 @@
                             text_size: self.size
                             halign: "left"
                             valign: 'middle'
-                            font_size: '16sp'
+                            font_size: '20sp'
                         SliderResponse:
                             opacity: 0
                             id: urgeSlider
@@ -419,7 +345,7 @@
                             text_size: self.size
                             halign: "left"
                             valign: 'middle'
-                            font_size: '16sp'
+                            font_size: '20sp'
                         SliderResponse:
                             opacity: 0
                             id: touchSlider
@@ -439,7 +365,7 @@
                             text_size: self.size
                             halign: "left"
                             valign: 'middle'
-                            font_size: '16sp'
+                            font_size: '20sp'
                         SliderResponse:
                             opacity: 0
                             id: pressureSlider
@@ -459,7 +385,7 @@
                             text_size: self.size
                             halign: "left"
                             valign: 'middle'
-                            font_size: '16sp'
+                            font_size: '20sp'
                         SliderResponse:
                             opacity: 0
                             id: sharpSlider
@@ -479,7 +405,7 @@
                             text_size: self.size
                             halign: "left"
                             valign: 'middle'
-                            font_size: '16sp'
+                            font_size: '20sp'
                         SliderResponse:
                             opacity: 0
                             id: prickSlider
@@ -499,7 +425,7 @@
                             text_size: self.size
                             halign: "left"
                             valign: 'middle'
-                            font_size: '16sp'
+                            font_size: '20sp'
                         SliderResponse:
                             opacity: 0
                             id: electricSlider
@@ -519,7 +445,7 @@
                             text_size: self.size
                             halign: "left"
                             valign: 'middle'
-                            font_size: '16sp'
+                            font_size: '20sp'
                         SliderResponse:
                             opacity: 0
                             id: shockSlider
@@ -539,7 +465,7 @@
                             text_size: self.size
                             halign: "left"
                             valign: 'middle'
-                            font_size: '16sp'
+                            font_size: '20sp'
                         SliderResponse:
                             opacity: 0
                             id: pulseSlider
@@ -559,7 +485,7 @@
                             text_size: self.size
                             halign: "left"
                             valign: 'middle'
-                            font_size: '16sp'
+                            font_size: '20sp'
                         SliderResponse:
                             opacity: 0
                             id: tickleSlider
@@ -579,7 +505,7 @@
                             text_size: self.size
                             halign: "left"
                             valign: 'middle'
-                            font_size: '16sp'
+                            font_size: '20sp'
                         SliderResponse:
                             opacity: 0
                             id: itchSlider
@@ -599,7 +525,7 @@
                             text_size: self.size
                             halign: "left"
                             valign: 'middle'
-                            font_size: '16sp'
+                            font_size: '20sp'
                         SliderResponse:
                             opacity: 0
                             id: tingleSlider
@@ -619,7 +545,7 @@
                             text_size: self.size
                             halign: "left"
                             valign: 'middle'
-                            font_size: '16sp'
+                            font_size: '20sp'
                         SliderResponse:
                             opacity: 0
                             id: numbSlider
@@ -639,7 +565,7 @@
                             text_size: self.size
                             halign: "left"
                             valign: 'middle'
-                            font_size: '16sp'
+                            font_size: '20sp'
                         SliderResponse:
                             opacity: 0
                             id: warmSlider
@@ -659,7 +585,7 @@
                             text_size: self.size
                             halign: "left"
                             valign: 'middle'
-                            font_size: '16sp'
+                            font_size: '20sp'
                         SliderResponse:
                             opacity: 0
                             id: coolSlider
@@ -679,8 +605,8 @@
             tab_pos:'right_top'
             background_color: (1, 1, 0, 0)
             do_default_tab: False
-            tab_height: 100
-            tab_width: 100
+            tab_height: 200
+            tab_width: 200
 
             TabbedPanelItem:
                 text:''
@@ -695,7 +621,7 @@
                         size: self.size
                 canvas.after:
                     PopMatrix
-                font_size: '14sp'
+                font_size: '20sp'
                 ImageProperties:
                     text:'Правая внутренняя'
                     id: img0
@@ -715,7 +641,7 @@
                         size: self.size
                 canvas.after:
                     PopMatrix
-                font_size: '14sp'
+                font_size: '20sp'
                 ImageProperties:
                     id: img1
                     id2: 'img1'
@@ -734,7 +660,7 @@
                         size: self.size
                 canvas.after:
                     PopMatrix
-                font_size: '14sp'
+                font_size: '20sp'
                 ImageProperties:
                     id: img2
                     id2: 'img2'
@@ -753,7 +679,7 @@
                         size: self.size
                 canvas.after:
                     PopMatrix
-                font_size: '14sp'
+                font_size: '20sp'
                 ImageProperties:
                     id: img3
                     id2: 'img3'
@@ -761,9 +687,7 @@
 
             TabbedPanelItem:
                 text:''
-
                 id:tab4
-                #Label: "Kek"
                 background_down: "atlas://data/images/defaulttheme/button_pressed"
                 canvas.before:
                     PushMatrix
@@ -774,7 +698,7 @@
                         size: self.size
                 canvas.after:
                     PopMatrix
-                font_size: '14sp'
+                font_size: '20sp'
                 ImageProperties:
                     id: img4
                     id2: 'img4'
@@ -792,19 +716,11 @@
                         size: self.size
                 canvas.after:
                     PopMatrix
-                font_size: '14sp'
+                font_size: '20sp'
                 ImageProperties:
                     id: img5
                     id2: 'img5'
                     opacity: 1
-
-
-
-        #SensationButton:
-        #    id2: 'add'
-        #    text: 'Add Sensation'
-        #    pos_hint: {'right': 0.95, 'y':0}
-        #    size_hint: 0.15,0.04
 
         SensationButton:
             id2: 'clear'
@@ -825,12 +741,11 @@
             font_size: '25sp'
             background_color: [0.17254901960784313, 0.6274509803921569, 0.17254901960784313, 1]
 
-
         RestoreButton:
             id2: 'restore'
             text: 'Восстановить'
-            pos_hint: {'right': 0.3, 'y':0.95}
-            size_hint: 0.3,0.08
+            pos_hint: {'right': 0.2, 'y':0.96}
+            size_hint: 0.2, 0.04
             font_size: '25sp'
             background_color: [1.0, 0.4980392156862745, 0.054901960784313725]
 

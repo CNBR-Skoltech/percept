@@ -1,3 +1,4 @@
+from logging import root
 from kivy.app import App
 from kivy.uix.image import Image
 from kivy.uix.floatlayout import FloatLayout
@@ -15,7 +16,14 @@ from kivy.uix.accordion import Accordion
 from kivy.uix.popup import Popup
 import yaml
 import os
-from pylsl import resolve_streams, StreamOutlet, StreamInlet
+import shutil
+
+# try:
+# 	from pylsl import resolve_streams, StreamOutlet, StreamInlet
+# 	_PYLSL=True
+# except Exception as e:
+# 	print(e)
+# 	_PYLSL=False
 
 
 class UserResponse(BoxLayout):
@@ -105,13 +113,11 @@ class UserResponse(BoxLayout):
     def clear_window_canvas(self):
         """Clears all drawn lines on the image canvas"""
 
-
         for idx in range(len(self.imgfiles)):
             self.ids['img%d' % idx].clear_drawn_lines('all')
 
     def reset_radio_check_slider(self):
         """resets radiobutton, checkbox and slider values"""
-
 
         self.ids['qualityAccordion'].collapse = False
         self.ids['modalityAccordion'].collapse = True
@@ -125,6 +131,16 @@ class UserResponse(BoxLayout):
             else:
                 self.ids[iKey].value = 5
             self.ids[iKey].cursor_image = '../ImageBank/sliderVal.png'
+
+            slider_ = self.ids[iKey]
+            # https://stackoverflow.com/questions/66350205/how-to-simulate-user-action-on-kivy-widget-click-on-a-button-by-example
+            from kivy.input.providers.mouse import MouseMotionEvent
+            touch = MouseMotionEvent(None, 123, (123, 456))  # args are device, id, spos
+            touch.button = 'left'
+            touch.pos = slider_.value_pos
+            touch.grab_current=slider_
+            slider_.dispatch('on_touch_up', touch)
+
 
         #for i in self.ids['depthbox1'].children:
         #    i.active=False
@@ -205,8 +221,6 @@ class SaveResetButton(Button):
         #    except:
         #        print('No', i)
 
-
-
         rootwidget.reset_radio_check_slider()
         rootwidget.repNumber += 1
         rootwidget.ids['frameLabel']._label._text = 'Кадр: ' + str(rootwidget.repNumber)
@@ -273,8 +287,17 @@ class LabelCheckResponse(CheckBox, Label):
                 for responseObj in self.parent.children[:-1]:
                     responseObj.canvas.opacity = 1              # canvas of boxlayout
                     responseObj.disabled = False
+
+                    # https://stackoverflow.com/questions/66350205/how-to-simulate-user-action-on-kivy-widget-click-on-a-button-by-example
+                    from kivy.input.providers.mouse import MouseMotionEvent
+                    touch = MouseMotionEvent(None, 123, (123, 456))  # args are device, id, spos
+                    touch.button = 'left'
+                    touch.pos = responseObj.center
+                    touch.grab_current=responseObj
+                    responseObj.dispatch('on_touch_up', touch)
+
                     #self.cursor_image = 'atlas://data/images/defaulttheme/slider_cursor'
-                    #self.value_pos = touch.pos
+                    # self.value_pos = touch.pos
                     #rootwidget.ids['responseAcc'].tempDict[self.id2] = round(self.value, 3)
 
                 print(self.text + ' enabled: ' + str(self.active))
@@ -294,6 +317,10 @@ class LabelCheckResponse(CheckBox, Label):
                     responseObj.disabled = True
                     responseObj.value = 0    # slider
                     responseObj.cursor_image = '../ImageBank/sliderVal.png'
+                    try:
+                        del rootwidget.ids['responseAcc'].tempDict[responseObj.id2]
+                    except Exception as e:
+                        print(e)
 
                 if self.group in rootwidget.ids['responseAcc'].tempDict.keys():
                     rootwidget.ids['responseAcc'].tempDict[self.group]=''
@@ -343,6 +370,8 @@ class SensationButton(Button):
         responseaccobj = self.get_parent_window().children[-1].ids['responseAcc']
         stencilobj = self.get_root_window().children[-1].ids['floatStencilArea']
 
+        cur_frame = rootwidget.repNumber
+
         if self.id2 == 'add':
 
             # copy current dictionary to accordion dictionary
@@ -375,6 +404,7 @@ class SensationButton(Button):
 
             # rootwidget.reset_radio_check_slider()
 
+
         # prevent propagation of touch
         stencilobj.buttonPress = True
         return True
@@ -388,8 +418,10 @@ class RestoreButton(Button):
 
     def on_press(self):
 
-        try:
-            rootwidget = self.get_root_window().children[-1]
+        rootwidget = self.get_root_window().children[-1]
+        rootwidget.reset_radio_check_slider()
+
+        try:    
             #rootwidget.ids[0].source = '../ImageBank/Rpalmar_.png'
             previous_value=rootwidget.repNumber-1
             print('Previous values equals to', previous_value)
@@ -401,10 +433,10 @@ class RestoreButton(Button):
                 try:
                     if os.path.exists('../data/default/default_R' + str(previous_value) + '_'+pic_inst+'.png'):
                         rootwidget.ids['img'+str(i)].source = '../data/default/default_R' + str(previous_value) + '_'+pic_inst+'.png'
+                        shutil.copyfile('../data/default/default_R' + str(previous_value) + '_'+pic_inst+'.png', 
+                                        '../data/default/default_R' + str(rootwidget.repNumber) + '_'+pic_inst+'.png')
                 except:
                     print('No picture', pic_inst)
-
-
 
             yaml_file_slider='../data/default/default_R' + str(previous_value) + '_RadioCheckSlider.yml'
             #default_R346_RadioCheckSlider.yml
@@ -423,32 +455,41 @@ class RestoreButton(Button):
                 #outfile.write(yaml.dump(imgpropertiesdict, default_flow_style=False))
                 #outfile.write(yaml.dump(sensationdict, default_flow_style=False))
 
-        except:
+        except Exception as e:
+            print(e)
             print('No previous value files')
 
         sensekey = 'Sensation 0'
         responseaccobj = self.get_parent_window().children[-1].ids['responseAcc']
 
         # responseaccobj.labelCheckDict= data_loaded
+        for k, v in data_loaded.items():
+            slider_ = rootwidget.ids.get(k, None)
+            if slider_ is None:
+                continue
+            slider_.value = v
+            responseaccobj.tempDict[k] = data_loaded[k]
+            slider_.opacity=1
+            slider_.disabled=False
 
-        keys = data_loaded.keys()
-        for i in keys:
-            responseaccobj.tempDict[i] = data_loaded[i]
-
-        for iKey in keys:
-            rootwidget.ids[iKey].value = data_loaded[iKey]
+            try:
+                if len(slider_.parent.children)!=2:
+                    continue
+                chbox = slider_.parent.children[-1] # try to locate checkbox
+                chbox.active = True
+                print(chbox)
+            except Exception as e:
+                print(e)
 
 
         for i in  ['Barms','Farms','Ldorsum','Lpalmar','Rdorsum','Rpalmar']:
-
             try:
                 rootwidget.ids['floatStencilArea'].lineDict['sensation0_'+i]=image_data_loaded['sensation0_'+i]
+                print('Loaded', i)
             except:
                 print('No', i)
 
-
-        print(10)
-
+        print('Data Loaded Successfully')
 
 
 class FloatStencil(FloatLayout, StencilView):
@@ -466,7 +507,6 @@ class FloatStencil(FloatLayout, StencilView):
         super(FloatStencil, self).__init__(**kwargs)
 
 
-
 class CustomImage(Image):
     """widget containing png images
 
@@ -477,7 +517,6 @@ class CustomImage(Image):
     """
 
     colors = ListProperty()
-
     oldSegment_buffer = ListProperty()
     segment_color = ListProperty()
     moveSegment_color = ListProperty()
@@ -589,6 +628,7 @@ class PerceptMap(App):
         Window.size = eval(config.get('config', 'windowSize'))
         Window.clearcolor = eval(config.get('config', 'windowColor'))
         Window.borderless = config.getboolean('config', 'windowBorderless')
+        Window.maximize()
         if not os.path.exists(config.get('config', 'savePath')):
             os.makedirs(config.get('config', 'savePath'))
         return UserResponse(config.get('config', 'savePath'), eval(config.get('config', 'imgFiles')),
@@ -599,6 +639,11 @@ class PerceptMap(App):
         config = self.config
         config.set('config', 'trialNumber', self.root_window.children[-1].repNumber)
         config.write()
+
+    def on_start(self, *args, **kwargs):
+        self.root.reset_radio_check_slider()
+
+
 
 
 if __name__ == '__main__':
